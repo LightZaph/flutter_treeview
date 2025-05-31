@@ -61,10 +61,7 @@ class Node<T> {
   /// Creates a [Node] from a string value. It generates a unique key.
   static Node<T> fromLabel<T>(String label) {
     String _key = Utilities.generateRandom();
-    return Node<T>(
-      key: '${_key}_$label',
-      label: label,
-    );
+    return Node<T>(key: '${_key}_$label', label: label);
   }
 
   /// Creates a [Node] from a Map<String, dynamic> map. The map
@@ -120,18 +117,17 @@ class Node<T> {
     Color? iconColor,
     Color? selectedIconColor,
     T? data,
-  }) =>
-      Node<T>(
-        key: key ?? this.key,
-        label: label ?? this.label,
-        icon: icon ?? this.icon,
-        iconColor: iconColor ?? this.iconColor,
-        selectedIconColor: selectedIconColor ?? this.selectedIconColor,
-        expanded: expanded ?? this.expanded,
-        parent: parent ?? this.parent,
-        children: children ?? this.children,
-        data: data ?? this.data,
-      );
+  }) => Node<T>(
+    key: key ?? this.key,
+    label: label ?? this.label,
+    icon: icon ?? this.icon,
+    iconColor: iconColor ?? this.iconColor,
+    selectedIconColor: selectedIconColor ?? this.selectedIconColor,
+    expanded: expanded ?? this.expanded,
+    parent: parent ?? this.parent,
+    children: children ?? this.children,
+    data: data ?? this.data,
+  );
 
   /// Whether this object has children [Node].
   bool get isParent => children.isNotEmpty || parent;
@@ -149,8 +145,9 @@ class Node<T> {
       "label": label,
       "icon": icon == null ? null : icon!.codePoint,
       "iconColor": iconColor == null ? null : iconColor!.toString(),
-      "selectedIconColor":
-          selectedIconColor == null ? null : selectedIconColor!.toString(),
+      "selectedIconColor": selectedIconColor == null
+          ? null
+          : selectedIconColor!.toString(),
       "expanded": expanded,
       "parent": parent,
       "children": children.map((Node child) => child.asMap).toList(),
@@ -169,7 +166,7 @@ class Node<T> {
 
   @override
   int get hashCode {
-    return hashValues(
+    return Object.hash(
       key,
       label,
       icon,
